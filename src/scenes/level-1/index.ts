@@ -10,13 +10,13 @@ export class Level1 extends Scene {
   private groundLayer!: Tilemaps.TilemapLayer;
   private chests!: Phaser.GameObjects.Sprite[];
   private enemies!: Phaser.GameObjects.Sprite[];
-  public getDamage(value?: number): void {
-    super.getDamage(value);
-    this.hpValue.setText(this.hp.toString());
-    if (this.hp <= 0) {
-      this.scene.game.events.emit(EVENTS_NAME.gameEnd, GameStatus.LOSE);
-    }
-  }
+  // public getDamage(value?: number): void {
+  //   super.getDamage(value);
+  //   this.hpValue.setText(this.hp.toString());
+  //   if (this.hp <= 0) {
+  //     this.scene.game.events.emit(EVENTS_NAME.gameEnd, GameStatus.LOSE);
+  //   }
+  // }
 
   
   private initChests(): void {
@@ -24,7 +24,7 @@ export class Level1 extends Scene {
       this.map.filterObjects('Chests', obj => obj.name === 'ChestPoint'),
     );
     this.chests = chestPoints.map(chestPoint =>
-      this.physics.add.sprite(chestPoint.x, chestPoint.y, 'tiles_spr', 595).setScale(1.5),
+      this.physics.add.sprite(chestPoint.x, chestPoint.y, 'tiles_spr', 595).setScale(0.9),
     );
     this.chests.forEach(chest => {
       this.physics.add.overlap(this.player, chest, (obj1, obj2) => {
@@ -77,7 +77,7 @@ export class Level1 extends Scene {
     this.physics.add.collider(this.enemies, this.wallsLayer);
     this.physics.add.collider(this.enemies, this.enemies);
     this.physics.add.collider(this.player, this.enemies, (obj1, obj2) => {
-      (obj1 as Player).getDamage(1);
+      (obj1 as Player).getDamage(5);
     });
   }
   create(): void {

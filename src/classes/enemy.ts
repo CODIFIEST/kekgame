@@ -4,7 +4,7 @@ import type {Player}  from './player';
 import { EVENTS_NAME } from '../consts';
 export class Enemy extends Actor {
   private target: Player;
-  private AGRESSOR_RADIUS = 100;
+  private AGRESSOR_RADIUS = 1000;
   private attackHandler: () => void;
   constructor(
     scene: Phaser.Scene,
@@ -28,10 +28,12 @@ export class Enemy extends Actor {
         Phaser.Math.Distance.BetweenPoints(
           { x: this.x, y: this.y },
           { x: this.target.x, y: this.target.y },
-        ) < this.target.width
+        ) < this.target.width/2.1
       ) {
         this.getDamage();
+        this.scene.game.events.emit(EVENTS_NAME.kill)
         this.disableBody(true, false);
+
         this.scene.time.delayedCall(300, () => {
           this.destroy();
         });

@@ -4,16 +4,21 @@ import { EVENTS_NAME, GameStatus } from '../../consts';
 export class UIScene extends Scene {
   private score!: Score;
   private chestLootHandler: () => void;
+  private killHandler: () => void;
   private gameEndPhrase!: Text;
 private gameEndHandler: (status: GameStatus) => void;
   constructor() {
     super('ui-scene');
     this.chestLootHandler =() => {
-      this.score.changeValue(ScoreOperations.INCREASE, 10);
+      this.score.changeValue(ScoreOperations.INCREASE, 100);
+    }
+    this.killHandler = () =>{
+      this.score.changeValue(ScoreOperations.INCREASE, 69)
     }
     this.gameEndHandler = (status) => {
       this.cameras.main.setBackgroundColor('rgba(0,0,0,0.6)');
       this.game.scene.pause('level-1-scene');
+      
       this.gameEndPhrase = new Text(
         // this,
         // this.game.scale.width / 2,
@@ -38,6 +43,7 @@ private gameEndHandler: (status: GameStatus) => void;
 
   private initListeners(): void {
     this.game.events.on(EVENTS_NAME.chestLoot, this.chestLootHandler, this);
+    this.game.events.on(EVENTS_NAME.kill, this.killHandler, this)
     this.game.events.once(EVENTS_NAME.gameEnd, this.gameEndHandler, this);
   }
 }
