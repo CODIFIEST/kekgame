@@ -21,12 +21,15 @@ export class LoadingScene extends Scene {
         frameWidth: 16,
         frameHeight: 16,
       });
+      this.load.audio("whack", ["../../src/sounds/whack.mp3"]);
+      this.load.audio("ugh", ["../../src/sounds/ugh.mp3"]);
+      this.load.audio("wuhu", ["../../src/sounds/wuhu.mp3"]);
 }
 
   create(): void {
-    this.king = this.add.sprite(100, 100, 'king');
+    this.king = this.add.sprite(800, 700, 'king');
     this.scene.start('level-1-scene');
     this.scene.start('ui-scene');
-    console.log('Loading scene was created');
+   
   }
 }

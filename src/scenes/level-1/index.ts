@@ -66,11 +66,11 @@ export class Level1 extends Scene {
   }
   // create the mobs/enemies
   private initEnemies(): void {
-    const enemiesPoints = gameObjectsToObjectPoints(
-      this.map.filterObjects('Enemies', (obj) => obj.name === 'EnemyPoint'),
+    const pepePoints = gameObjectsToObjectPoints(
+      this.map.filterObjects('Enemies', (obj) => obj.name === 'PepePoint'),
     );
-    this.enemies = enemiesPoints.map((enemyPoint) =>
-      new Enemy(this, enemyPoint.x, enemyPoint.y, 'tiles_spr', this.player, 503)
+    this.enemies = pepePoints.map((enemyPoint) =>
+      new Enemy(this, enemyPoint.x, enemyPoint.y, 'tiles_spr', this.player, 439)
         .setName(enemyPoint.id.toString())
         .setScale(1.5),
     );
@@ -79,10 +79,39 @@ export class Level1 extends Scene {
     this.physics.add.collider(this.player, this.enemies, (obj1, obj2) => {
       (obj1 as Player).getDamage(5);
     });
+    //turbo
+    const turboPoints = gameObjectsToObjectPoints(
+      this.map.filterObjects('Enemies', (obj) => obj.name === 'TurboPoint'),
+    );
+    this.enemies = turboPoints.map((enemyPoint) =>
+      new Enemy(this, enemyPoint.x, enemyPoint.y, 'tiles_spr', this.player, 503)
+        .setName(enemyPoint.id.toString())
+        .setScale(1.5),
+    );
+    this.physics.add.collider(this.enemies, this.wallsLayer);
+    this.physics.add.collider(this.enemies, this.enemies);
+    this.physics.add.collider(this.player, this.enemies, (obj1, obj2) => {
+      (obj1 as Player).getDamage(10);
+    });
+    // doge
+    const dogePoints = gameObjectsToObjectPoints(
+      this.map.filterObjects('Enemies', (obj) => obj.name === 'DogePoint'),
+    );
+    this.enemies = dogePoints.map((enemyPoint) =>
+      new Enemy(this, enemyPoint.x, enemyPoint.y, 'tiles_spr', this.player, 119)
+        .setName(enemyPoint.id.toString())
+        .setScale(1.5),
+    );
+    this.physics.add.collider(this.enemies, this.wallsLayer);
+    this.physics.add.collider(this.enemies, this.enemies);
+    this.physics.add.collider(this.player, this.enemies, (obj1, obj2) => {
+      (obj1 as Player).getDamage(2);
+    });
+
   }
   create(): void {
     this.initMap();
-    this.player = new Player(this, 100, 100);
+    this.player = new Player(this, 800, 700);
     this.initChests();
     this.initEnemies();
     this.physics.add.collider(this.player, this.wallsLayer);

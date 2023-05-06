@@ -2,6 +2,7 @@ import { Scene } from 'phaser';
 import { Score, ScoreOperations } from '../../classes/score';
 import { EVENTS_NAME, GameStatus } from '../../consts';
 export class UIScene extends Scene {
+  
   private score!: Score;
   private chestLootHandler: () => void;
   private killHandler: () => void;
@@ -11,11 +12,16 @@ private gameEndHandler: (status: GameStatus) => void;
     super('ui-scene');
     this.chestLootHandler =() => {
       this.score.changeValue(ScoreOperations.INCREASE, 100);
+      const wuhu = this.sound.add("wuhu", {loop:false});
+      wuhu.play();
+      
     }
     this.killHandler = () =>{
       this.score.changeValue(ScoreOperations.INCREASE, 69)
     }
     this.gameEndHandler = (status) => {
+      const ugh = this.sound.add("ugh", {loop:false});
+      ugh.play();
       this.cameras.main.setBackgroundColor('rgba(0,0,0,0.6)');
       this.game.scene.pause('level-1-scene');
       

@@ -3,8 +3,10 @@ import { Actor } from './actor';
 import type {Player}  from './player';
 import { EVENTS_NAME } from '../consts';
 export class Enemy extends Actor {
+  
+  whack = this.scene.sound.add("whack", { loop: false });
   private target: Player;
-  private AGRESSOR_RADIUS = 1000;
+  private AGRESSOR_RADIUS = 500;
   private attackHandler: () => void;
   constructor(
     scene: Phaser.Scene,
@@ -28,10 +30,11 @@ export class Enemy extends Actor {
         Phaser.Math.Distance.BetweenPoints(
           { x: this.x, y: this.y },
           { x: this.target.x, y: this.target.y },
-        ) < this.target.width/2.1
+        ) < this.target.width/1.8
       ) {
         this.getDamage();
         this.scene.game.events.emit(EVENTS_NAME.kill)
+        this.whack.play();
         this.disableBody(true, false);
 
         this.scene.time.delayedCall(300, () => {
@@ -53,8 +56,8 @@ export class Enemy extends Actor {
         { x: this.target.x, y: this.target.y },
       ) < this.AGRESSOR_RADIUS
     ) {
-      this.getBody().setVelocityX(this.target.x - this.x);
-      this.getBody().setVelocityY(this.target.y - this.y);
+      this.getBody().setVelocityX((this.target.x - this.x));
+      this.getBody().setVelocityY((this.target.y - this.y));
     } else {
       this.getBody().setVelocity(0);
     }
