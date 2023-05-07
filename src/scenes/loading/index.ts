@@ -5,7 +5,7 @@ export class LoadingScene extends Scene {
     super('loading-scene');
   }
   preload(): void {
-	this.load.baseURL = 'src/assets/';
+	this.load.baseURL = 'assets/';
 	// key: 'king'
 	// path from baseURL to file: 'sprites/king.png'
 	this.load.image('king', 'sprites/king.png');
@@ -21,9 +21,9 @@ export class LoadingScene extends Scene {
         frameWidth: 16,
         frameHeight: 16,
       });
-      this.load.audio("whack", ["../../src/sounds/whack.mp3"]);
-      this.load.audio("ugh", ["../../src/sounds/ugh.mp3"]);
-      this.load.audio("wuhu", ["../../src/sounds/wuhu.mp3"]);
+      this.load.audio("whack", ["../sounds/whack.mp3"]);
+      this.load.audio("ugh", ["../sounds/ugh.mp3"]);
+      this.load.audio("wuhu", ["../sounds/wuhu.mp3"]);
 }
 
   create(): void {
