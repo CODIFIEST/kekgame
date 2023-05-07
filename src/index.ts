@@ -8,7 +8,7 @@ interface Window {
   }
 const gameConfig: Types.Core.GameConfig = {
     
-	title: 'Phaser game tutorial',
+	title: 'KEK CASH PEPE SMASH',
   type: Phaser.WEBGL,
   parent: 'game',
   backgroundColor: '#351f1b',
