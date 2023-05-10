@@ -14,22 +14,31 @@
     "allowJs": true,
     "checkJs": true,
     "isolatedModules": true,
-    "ignoreDeprecations" : "5.0",
+    "ignoreDeprecations": "5.0",
     "sourceMap": true,
     "strict": true,
     "noImplicitReturns": true,
     "noImplicitAny": true,
-   // "module": "es6",
+    // "module": "es6",
     "moduleResolution": "node",
     // "resolveJsonModule": true,
     "esModuleInterop": true,
     // "target": "es5",
     // "allowJs": true,
     "baseUrl": ".",
-
   },
-  "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte", "index.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }],
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.svelte",
+    "index.ts"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
   "exclude": [
     "node_modules",
     "./dist/"
