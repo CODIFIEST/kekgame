@@ -6,7 +6,7 @@
     let scores = [];
     let onthelist=[];
     async function getHighScores() {
-        const result = await axios.get('http://localhost:3888/scores');
+        const result = await axios.get('https://kekserver.vercel.app/scores');
         console.log('results', result.data)
         return result.data
         

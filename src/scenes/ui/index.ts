@@ -45,7 +45,7 @@ export class UIScene extends Scene {
 
       console.log(name, `You just got a score of`, this.score.scoreValue)
       async function updateScores() {
-        const result = await axios.post("http://localhost:3888/scores", {
+        const result = await axios.post("https://kekserver.vercel.app/scores", {
             address: lastScore,// TODO: get the address from token gate
             score: lastScore,
             name: name,
@@ -90,7 +90,10 @@ export class UIScene extends Scene {
   create(): void {
     this.score = new Score(this, 20, 20, 0);
     // TODO: Add high score here
-    highScoreText = this.add.text(520, 20, `High score: ${topScore[0].score}`)
+    highScoreText = this.add.text(520, 20, `High score: ${topScore[0].score}`, {
+      fontSize: "32px",
+      // fill: "#000",
+  })
     this.initListeners();
   }
 
