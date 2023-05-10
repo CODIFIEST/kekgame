@@ -6,10 +6,10 @@ export class LoadingScene extends Scene {
   }
   
   preload(): void {
-	this.load.baseURL = '/src/assets/';
+	// this.load.baseURL = '/src/assets/';
 	// key: 'king'
 	// path from baseURL to file: 'sprites/king.png'
-	this.load.image('king', 'sprites/king.png');
+	this.load.image('king', 'src/assets/sprites/king.png');
     this.load.image({
         key: 'tiles',
         url: 'tilemaps/tiles/dungeon-16-16.png',
