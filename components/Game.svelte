@@ -3,7 +3,7 @@ import { Game } from 'phaser';
 import type {Types} from 'phaser'
 import { Level1, LoadingScene } from '../src/scenes';
 import { UIScene } from '../src/scenes/ui';
-    import playerName from '../src/stores/playername';
+    import playerName from '../src/stores/playerName';
     import playerScore from '../src/stores/playerScore';
 interface Window {
     sizeChanged: () => void;
@@ -58,10 +58,7 @@ const gameConfig: Types.Core.GameConfig = {
   (window as unknown as Window).game = new Game(gameConfig);
 console.log("do we get here?")
 console.log($playerName)
-if (!$playerScore){
-    
-}
-console.log($playerScore)
+
 
 
 </script>

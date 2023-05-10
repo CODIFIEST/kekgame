@@ -1,7 +1,20 @@
 import { Scene } from 'phaser';
+import axios from "axios";
 import { Score, ScoreOperations } from '../../classes/score';
 import { EVENTS_NAME, GameStatus } from '../../consts';
 import playerScore from '../../stores/playerScore';
+import playerName from '../../stores/playerName'
+import { pop, push } from "svelte-spa-router";
+import highscores from '../../stores/highscores';
+let topScore;
+highscores.subscribe(value=>{
+  topScore= value;
+})
+let name =""
+let highScoreText;
+playerName.subscribe(value =>{
+name = value;
+})
 export class UIScene extends Scene {
 
   private score!: Score;
@@ -30,13 +43,32 @@ export class UIScene extends Scene {
 
       playerScore.set(this.score.scoreValue);
 
-      console.log(`You just got a score of`, this.score.scoreValue)
+      console.log(name, `You just got a score of`, this.score.scoreValue)
+      async function updateScores() {
+        const result = await axios.post("http://localhost:3888/scores", {
+            address: lastScore,// TODO: get the address from token gate
+            score: lastScore,
+            name: name,
+         
+        });
+    }
+    updateScores();
 
       this.game.scene.pause('level-1-scene');
 
+      this.input.on('pointerdown', () => {
+        this.game.events.off(EVENTS_NAME.chestLoot, this.chestLootHandler);
+        this.game.events.off(EVENTS_NAME.gameEnd, this.gameEndHandler);
+        this.scene.get('level-1-scene').scene.restart();
+        this.scene.restart();
+      });
 
-
-
+        //do a modal for game restart here ##TODO
+        setTimeout(async() => {
+          await push('/');
+          location.reload();
+       
+      }, 5000);
 
       this.gameEndPhrase = new Text(
         // this,
@@ -58,6 +90,7 @@ export class UIScene extends Scene {
   create(): void {
     this.score = new Score(this, 20, 20, 0);
     // TODO: Add high score here
+    highScoreText = this.add.text(520, 20, `High score: ${topScore[0].score}`)
     this.initListeners();
   }
 

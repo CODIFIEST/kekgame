@@ -72,7 +72,7 @@ export class Level1 extends Scene {
     this.enemies = pepePoints.map((enemyPoint) =>
       new Enemy(this, enemyPoint.x, enemyPoint.y, 'tiles_spr', this.player, 439)
         .setName(enemyPoint.id.toString())
-        .setScale(1.5),
+        .setScale(1.1),
     );
     this.physics.add.collider(this.enemies, this.wallsLayer);
     this.physics.add.collider(this.enemies, this.enemies);
@@ -86,7 +86,7 @@ export class Level1 extends Scene {
     this.enemies = turboPoints.map((enemyPoint) =>
       new Enemy(this, enemyPoint.x, enemyPoint.y, 'tiles_spr', this.player, 503)
         .setName(enemyPoint.id.toString())
-        .setScale(1.5),
+        .setScale(1.1),
     );
     this.physics.add.collider(this.enemies, this.wallsLayer);
     this.physics.add.collider(this.enemies, this.enemies);
@@ -100,7 +100,7 @@ export class Level1 extends Scene {
     this.enemies = dogePoints.map((enemyPoint) =>
       new Enemy(this, enemyPoint.x, enemyPoint.y, 'tiles_spr', this.player, 119)
         .setName(enemyPoint.id.toString())
-        .setScale(1.5),
+        .setScale(1.1),
     );
     this.physics.add.collider(this.enemies, this.wallsLayer);
     this.physics.add.collider(this.enemies, this.enemies);
@@ -113,6 +113,9 @@ export class Level1 extends Scene {
     this.initMap();
     this.player = new Player(this, 800, 700);
     this.initChests();
+    // setInterval(()=>{
+    //   this.initEnemies();
+    // },30000)
     this.initEnemies();
     this.physics.add.collider(this.player, this.wallsLayer);
     this.initCamera();

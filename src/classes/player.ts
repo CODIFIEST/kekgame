@@ -58,7 +58,9 @@ export class Player extends Actor {
     this.hpValue = new Text(this.scene, this.x, this.y - this.height, this.hp.toString())
     .setFontSize(12)
     .setOrigin(0.8, 0.5);
-    
+    this.on('destroy', () => {
+      this.keySpace.removeAllListeners();
+    });
   }
  
   update(): void {

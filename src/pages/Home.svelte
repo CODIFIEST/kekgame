@@ -1,7 +1,7 @@
 <script lang="ts">
-    // import HighScoreList from "../../components/HighScoreList.svelte";
+    import HighScoreList from "../../components/HighScoreList.svelte";
     import player1 from "../stores/player1";
-    import playerName from "../stores/playername";
+    import playerName from "../stores/playerName";
     import { push } from "svelte-spa-router/Router.svelte";
 
   async function setPlayerName() {
@@ -31,4 +31,4 @@ class="btn"
 <p class="mb-5 text-secondary">
 Kek cash is the one token to rule them all. Smash the alts for points and collect golden keks for the big bucks.  Enter your name to begin.
 </p>
-<!-- <HighScoreList /> -->
+<HighScoreList />
