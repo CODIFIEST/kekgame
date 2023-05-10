@@ -116,7 +116,7 @@ export class Level1 extends Scene {
     this.initEnemies();
     setInterval(()=>{
       this.initEnemies();
-    },3000)
+    },30000)
   
     this.physics.add.collider(this.player, this.wallsLayer);
     this.initCamera();
