@@ -64,11 +64,11 @@ export class UIScene extends Scene {
       });
 
         //do a modal for game restart here ##TODO
-        setTimeout(async() => {
-          await push('/');
-          location.reload();
+      //   setTimeout(async() => {
+      //     await push('/');
+      //     location.reload();
        
-      }, 5000);
+      // }, 5000);
 
       this.gameEndPhrase = new Text(
         // this,
