@@ -55,23 +55,24 @@ export class UIScene extends Scene {
 
       this.game.scene.pause('level-1-scene');
 
-      this.input.on('pointerdown', () => {
-        this.game.events.off(EVENTS_NAME.chestLoot, this.chestLootHandler);
-        this.game.events.off(EVENTS_NAME.kill, this.killHandler);
-        this.game.events.off(EVENTS_NAME.gameEnd, this.gameEndHandler);
-        // todo: reset countdown for enemy generation- 
-        //enemies continue to be generated while paused?????
+// commented out because of enemy infinite loop
+      // this.input.on('pointerdown', () => {
+      //   this.game.events.off(EVENTS_NAME.chestLoot, this.chestLootHandler);
+      //   this.game.events.off(EVENTS_NAME.kill, this.killHandler);
+      //   this.game.events.off(EVENTS_NAME.gameEnd, this.gameEndHandler);
+      //   // todo: reset countdown for enemy generation- 
+      //   //enemies continue to be generated while paused?????
 
-        this.scene.get('level-1-scene').scene.restart();
-        this.scene.restart();
-      });
+      //   this.scene.get('level-1-scene').scene.restart();
+      //   this.scene.restart();
+      // });
 
       //do a modal for game restart here ##TODO
-      //   setTimeout(async() => {
-      //     await push('/');
-      //     location.reload();
+        setTimeout(async() => {
+          await push('/');
+          location.reload();
 
-      // }, 5000);
+      }, 5000);
 
       this.gameEndPhrase = new Text(
         // this,

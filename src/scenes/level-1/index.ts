@@ -108,7 +108,7 @@ export class Level1 extends Scene {
     this.initMap();
     this.player = new Player(this, 800, 700);
     this.initChests();
-    // this.initEnemies();
+    this.initEnemies();
     if (!this.game.isPaused)
    
     {setInterval(() => {
