@@ -3,22 +3,15 @@ import { Player } from '../../classes/player';
 import { gameObjectsToObjectPoints } from '../../helpers/gameobject-to-object-point';
 import { EVENTS_NAME } from '../../consts';
 import { Enemy } from '../../classes/enemy';
-export class Level1 extends Scene { 
+//todo: make this a store and reset on game end let enemycountdown = 5000; 
+export class Level1 extends Scene {
   private map!: Tilemaps.Tilemap;
   private tileset!: Tilemaps.Tileset;
   private wallsLayer!: Tilemaps.TilemapLayer;
   private groundLayer!: Tilemaps.TilemapLayer;
   private chests!: Phaser.GameObjects.Sprite[];
   private enemies!: Phaser.GameObjects.Sprite[];
-  // public getDamage(value?: number): void {
-  //   super.getDamage(value);
-  //   this.hpValue.setText(this.hp.toString());
-  //   if (this.hp <= 0) {
-  //     this.scene.game.events.emit(EVENTS_NAME.gameEnd, GameStatus.LOSE);
-  //   }
-  // }
 
-  
   private initChests(): void {
     const chestPoints = gameObjectsToObjectPoints(
       this.map.filterObjects('Chests', obj => obj.name === 'ChestPoint'),
@@ -65,6 +58,7 @@ export class Level1 extends Scene {
     super('level-1-scene');
   }
   // create the mobs/enemies
+  //pepe
   private initEnemies(): void {
     const pepePoints = gameObjectsToObjectPoints(
       this.map.filterObjects('Enemies', (obj) => obj.name === 'PepePoint'),
@@ -72,7 +66,7 @@ export class Level1 extends Scene {
     this.enemies = pepePoints.map((enemyPoint) =>
       new Enemy(this, enemyPoint.x, enemyPoint.y, 'tiles_spr', this.player, 439)
         .setName(enemyPoint.id.toString())
-        .setScale(1.3),
+        .setScale(1.2),
     );
     this.physics.add.collider(this.enemies, this.wallsLayer);
     this.physics.add.collider(this.enemies, this.enemies);
@@ -100,7 +94,7 @@ export class Level1 extends Scene {
     this.enemies = dogePoints.map((enemyPoint) =>
       new Enemy(this, enemyPoint.x, enemyPoint.y, 'tiles_spr', this.player, 119)
         .setName(enemyPoint.id.toString())
-        .setScale(1.5),
+        .setScale(1.3),
     );
     this.physics.add.collider(this.enemies, this.wallsLayer);
     this.physics.add.collider(this.enemies, this.enemies);
@@ -109,21 +103,30 @@ export class Level1 extends Scene {
     });
 
   }
+
   create(): void {
     this.initMap();
     this.player = new Player(this, 800, 700);
     this.initChests();
-    this.initEnemies();
-    setInterval(()=>{
+    // this.initEnemies();
+    if (!this.game.isPaused)
+   
+    {setInterval(() => {
       this.initEnemies();
-    },30000)
-  
+      // if (enemycountdown >= 1000) {
+      //   enemycountdown = enemycountdown * .69;
+      // }
+      // else {
+      //   enemycountdown = 969;
+      // }
+    }, 25000)}
+
     this.physics.add.collider(this.player, this.wallsLayer);
     this.initCamera();
   }
 
   update(): void {
     this.player.update();
-    
+
   }
 }

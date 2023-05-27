@@ -7,7 +7,7 @@
   async function setPlayerName() {
         player1.set({
             name: $playerName,
-            address: "",
+            address: "", // todo: horsey get from token gate
             score: 0,
            
         });

@@ -42,7 +42,6 @@ export class Enemy extends Actor {
         });
       }};
       // EVENTS
-      // EVENTS
   this.scene.game.events.on(EVENTS_NAME.attack, this.attackHandler, this);
   this.on('destroy', () => {
     this.scene.game.events.removeListener(EVENTS_NAME.attack, this.attackHandler);

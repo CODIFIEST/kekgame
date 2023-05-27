@@ -1,5 +1,5 @@
 type PlayerScore ={
-    address:string,
+    address:string, 
     score:number,
     name:string
 }
